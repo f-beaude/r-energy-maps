@@ -1,0 +1,28 @@
+LFC area,LFC EIC,Country,Value 1,Value 2
+APG,10YAT-APG------L,AT,3,2
+ELIA,10YBE----------2,BE,2,3
+ESO,10YCA-BULGARIA-R,BG,1,#N/A
+Swissgrid,10YCH-SWISSGRIDZ,CH,2,#N/A
+CEPS,10YCZ-CEPS-----N,CZ,1,1
+Germany,10Y1001A1001A82H,DE,2,1
+Energinet W,10YDK-1--------W,DK,3,2
+Energinet E,10YDK-2--------M,DK,3,2
+Elering,10Y1001A1001A39I,EE,2,3
+REE,10YES-REE------0,ES,1,2
+Fingrid,10YFI-1--------U,FI,1,1
+RTE,10YFR-RTE------C,FR,#N/A,3
+Admie,10YGR-HTSO-----Y,GR,2,3
+HOPS,10YHR-HEP------M,HR,#N/A,2
+Mavir,10YHU-MAVIR----U,HU,3,1
+Terna,10YIT-GRTN-----B,IT,1,#N/A
+Litgrid,10YLT-1001A0008Q,LT,2,2
+AST,10YLV-1001A00074,LV,3,2
+TenneT Netherlands,10YNL----------L,NL,3,#N/A
+NVE,10YNO-0--------C,NO,1,1
+PSE,10YPL-AREA-----S,PL,2,2
+REN,10YPT-REN------W,PT,#N/A,3
+Transelectrica,10YRO-TEL------P,RO,3,3
+Svenska Krafnat,10YSE-1--------K,SE,1,1
+ELES,10YSI-ELES-----O,SI,3,3
+SEPS,10YSK-SEPS-----K,SK,2,2
+NG,10YGB----------A,GB,1,2

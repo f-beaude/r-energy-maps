@@ -1,0 +1,1 @@
+OGR shapes of electricity bidding-zones mapped according to bidding-zones' EIC codes (variable name : "eic_code").

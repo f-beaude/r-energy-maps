@@ -1,0 +1,2 @@
+Shape of electricity LFC areas (based on shapes from the European Commission, 2019). For Germany, the shapes of the TSO areas are approximately mapped by Lander.
+OGR shapes mapped according to control areas' EIC codes (variable name : "id")

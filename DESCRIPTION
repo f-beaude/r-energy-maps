@@ -1,0 +1,37 @@
+Package: eneRgymaps
+Type: Package
+Title: Geographic maps related to the energy sector
+Version: 0.3.0
+Author: Francois Beaude
+Maintainer: Francois Beaude <francois.beaude@gmail.com>
+Description: Package allowing to display geographic maps related to the energy sector.
+    Allows to map electricity information (related to e.g. countries, bidding zones, and load-frequency control areas) in Europe.
+License: LGPL. External elements (e.g. shapefiles and EIC codes) are the property (and subject to the license) of their respective owners.
+Encoding: UTF-8
+LazyData: true
+Depends: R (>= 2.1.0)
+Imports: data.table,
+    dplyr,
+    eneRgycache,
+    geojsonsf,
+    ggplot2,
+    hash,
+    magick,
+    RColorBrewer,
+    readxl,
+    rnaturalearth,
+    scales,
+    sf,
+    stats,
+    stringi,
+    testit
+Suggests: covr,
+    grDevices,
+    maptools,
+    rnaturalearthdata,
+    rnaturalearthhires,
+    roxygen2,
+    stringr,
+    svglite,
+    testthat
+RoxygenNote: 7.2.3

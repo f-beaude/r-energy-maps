@@ -1,0 +1,2 @@
+The data sets included in this package are not realistic, and are provided AS IS AND WITHOUT ANY GUARANTEE.
+They are only intended to illustrate the functionalities of this package. Any resemblance between the data and real-life is unintentional.

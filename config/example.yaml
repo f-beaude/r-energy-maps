@@ -1,0 +1,7 @@
+---
+default:
+
+    # Package installation
+    package-install:
+        # directory in which to install packages (NULL -> default package installation directory)
+        directory: NULL

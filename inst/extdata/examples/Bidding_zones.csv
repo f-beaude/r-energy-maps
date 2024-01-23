@@ -1,0 +1,52 @@
+Country,BZN,BZN_vs_country,area_code
+LV,AST BZ,equal,10YLV-1001A00074
+CZ,CEPS BZ,equal,10YCZ-CEPS-----N
+DE-LU,DE-LU,larger,10Y1001A1001A82H
+AT,AT,equal,10YAT-APG------L
+DK,DK1 BZ,smaller,10YDK-1--------W
+DK,DK2 BZ,smaller,10YDK-2--------M
+EE,Elering BZ,equal,10Y1001A1001A39I
+SI,ELES BZ,equal,10YSI-ELES-----O
+BE,Elia BZ,equal,10YBE----------2
+BG,ESO BZ,equal,10YCA-BULGARIA-R
+FI,Fingrid BZ,equal,10YFI-1--------U
+HR,HOPS BZ,equal,10YHR-HEP------M
+GR,IPTO BZ,equal,10YGR-HTSO-----Y
+IE,Ireland - (SEM) BZ,larger,10Y1001A1001A59C
+IT,IT-Brindisi BZ,smaller,10Y1001A1001A699
+IT,IT-Centre-North BZ,smaller,10Y1001A1001A70O
+IT,IT-Centre-South BZ,smaller,10Y1001A1001A71M
+IT,IT-Foggia BZ,smaller,10Y1001A1001A72K
+IT,IT-GR BZ,smaller,10Y1001A1001A66F
+IT,IT-North BZ,smaller,10Y1001A1001A73I
+IT,IT-North-AT BZ,smaller,10Y1001A1001A80L
+IT,IT-North-CH BZ,smaller,10Y1001A1001A68B
+IT,IT-North-FR BZ,smaller,10Y1001A1001A81J
+IT,IT-North-SI BZ,smaller,10Y1001A1001A67D
+IT,IT-Priolo BZ,smaller,10Y1001A1001A76C
+IT,IT-Rossano BZ,smaller,10Y1001A1001A77A
+IT,IT-Sardinia BZ,smaller,10Y1001A1001A74G
+IT,IT-Sicily BZ,smaller,10Y1001A1001A75E
+IT,IT-South BZ,smaller,10Y1001A1001A788
+IT,Italy_Sacodc,smaller,10Y1001A1001A893
+IT,Italy_Saco_AC,smaller,10Y1001A1001A885
+LT,Litgrid BZ,equal,10YLT-1001A0008Q
+HU,MAVIR BZ,equal,10YHU-MAVIR----U
+GB,National Grid BZ,smaller,10YGB----------A
+NO,NO1 BZ,smaller,10YNO-1--------2
+NO,NO2 BZ,smaller,10YNO-2--------T
+NO,NO3 BZ,smaller,10YNO-3--------J
+NO,NO4 BZ,smaller,10YNO-4--------9
+NO,NO5 BZ,smaller,10Y1001A1001A48H
+PL,PSE SA BZ,equal,10YPL-AREA-----S
+ES,REE BZ,equal,10YES-REE------0
+PT,REN BZ,equal,10YPT-REN------W
+FR,RTE BZ,equal,10YFR-RTE------C
+SE,SE1 BZ,smaller,10Y1001A1001A44P
+SE,SE2 BZ,smaller,10Y1001A1001A45N
+SE,SE3 BZ,smaller,10Y1001A1001A46L
+SE,SE4 BZ,smaller,10Y1001A1001A47J
+SK,SEPS BZ,equal,10YSK-SEPS-----K
+CH,swissgrid BZ,equal,10YCH-SWISSGRIDZ
+NL,TenneT NL BZ,equal,10YNL----------L
+RO,Transelectrica BZ,equal,10YRO-TEL------P

@@ -1,0 +1,1 @@
+The shapes and geographic data are provided AS IS AND WITHOUT ANY GUARANTEE.
