@@ -101,6 +101,7 @@ customMap4 <- eneRgymaps::world.background(only.keep.Europe = TRUE, fill.color =
                              pattern_fill = 'blue', # main filling
                              pattern_size = 0, # how large black lines must be between blue fillings
                              pattern_density = 0.5, # how much of the space do blue fillings take
+                             pattern_spacing = 0.05, # how many lines are drawn (smaller value = more thinner lines)
                              fill = 'red', # how to fill the rest of the shape (NA means no filling)
                              color = NA) # color of the border element
 customMap4
