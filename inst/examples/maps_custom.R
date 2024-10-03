@@ -37,6 +37,9 @@ lineCoordinateIdentifiers <- c (NA, NA, "long1", "lat1", "long2", "lat2")
 pricesWithCoordinates <- base::merge (x = PriceData, by.x = "area_code",
                                 y = BZsShapes, by.y = "eic_code", all = FALSE)
 
+highPricesWithCoordinates <- pricesWithCoordinates %>%
+  dplyr::filter(`price` > 63)
+
 
 # 2. Generate maps (from scratch, or on top of an existing map)
 
@@ -88,6 +91,19 @@ customMap3 <- eneRgymaps::mapBiddingZone(fill.data = BZs, fill.id.field.name = "
                         color = myColorPalette[5], width = 3)
 customMap3
 
+# 2.c Combining an energy map with a ggplot layer
+# Add stripes to the background map (using ggpattern)
+# ?ggpattern::geom_sf_pattern for help
+customMap4 <- eneRgymaps::world.background(only.keep.Europe = TRUE, fill.color = "grey", border.color = "white") +
+  ggpattern::geom_sf_pattern(data = highPricesWithCoordinates,
+                             mapping = ggplot2::aes_string(geometry = "geometry"), # rely on the geometry from the dataset
+                             pattern = 'stripe', # the kind of pattern to use
+                             pattern_fill = 'blue', # main filling
+                             pattern_size = 0, # how large black lines must be between blue fillings
+                             pattern_density = 0.5, # how much of the space do blue fillings take
+                             fill = 'red', # how to fill the rest of the shape (NA means no filling)
+                             color = NA) # color of the border element
+customMap4
 
 # help for setting shapes
 eneRgymaps::help.shapes()
