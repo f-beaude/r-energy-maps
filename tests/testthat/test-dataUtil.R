@@ -1,5 +1,21 @@
 testthat::context("Test data utilities")
 
+testthat::test_that("Testing save data", {
+
+  myKeys <- c ("a", "b", "c", "d")
+  myValues <- c (1, 2, 3, 4)
+
+  tmpOutputDir <- tempdir()
+  outputPath <- file.path(tmpOutputDir, "test_data")
+  testthat::expect_true ({eneRgymaps::save.data(dataset = myKeys, destination.path = outputPath); TRUE})
+  testthat::expect_true ({eneRgymaps::save.data(dataset = myValues, destination.path = outputPath); TRUE})
+
+  errorOutputPath <- file.path(tmpOutputDir, "AFolderWhichDoesn'tExist", "my_data")
+
+  # error : the output folder doesn't exist
+  testthat::expect_error (eneRgymaps::save.data(dataset = myKeys, destination.path = errorOutputPath))
+})
+
 testthat::test_that("Testing element mapping", {
 
   myKeys <- c ("a", "b", "c", "d")
