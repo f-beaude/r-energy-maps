@@ -108,16 +108,11 @@ green.orange.red.palette <- function (add.grey = FALSE) {
 #' @return the color palette as a vector
 #' @export
 acer.colors.palette <- function (add.greys = FALSE) {
-  blue1 <- grDevices::rgb (red = 54, green = 120, blue = 189, maxColorValue = 255)
-  blue2 <- grDevices::rgb (red = 115, green = 205, blue = 225, maxColorValue = 255)
-  yellow <- grDevices::rgb (red = 255, green = 225, blue = 80, maxColorValue = 255)
-  green <- grDevices::rgb (red = 150, green = 205, blue = 120, maxColorValue = 255)
-
-  grey1 <- grDevices::rgb (red = 230, green = 230, blue = 230, maxColorValue = 255)
-  grey2 <- grDevices::rgb (red = 200, green = 200, blue = 200, maxColorValue = 255)
-  pal <- c (blue1, blue2, yellow, green)
+  pal <- c("#CAF1FC","#FFF5B3","#C0F9CE","#DBCAFC","#FCC0C0","#FFD885","#BAD1FF","#9DE0D0")
 
   if (add.greys) {
+    grey1 <- grDevices::rgb (red = 230, green = 230, blue = 230, maxColorValue = 255)
+    grey2 <- grDevices::rgb (red = 200, green = 200, blue = 200, maxColorValue = 255)
     pal <- c(pal, grey1, grey2)
   }
 

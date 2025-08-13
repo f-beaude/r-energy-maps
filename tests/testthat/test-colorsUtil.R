@@ -72,11 +72,11 @@ testthat::test_that("Testing color palette", {
 testthat::test_that("Testing ACER colors palette", {
 
   myACERPal1 <- eneRgymaps::acer.colors.palette (add.greys = FALSE)
-  testthat::expect_equal (eneRgymaps::palette.length (palette = myACERPal1), 4)
+  testthat::expect_equal (eneRgymaps::palette.length (palette = myACERPal1), 8)
   testthat::expect_true (all(eneRgymaps::valid.colors(myACERPal1)))
 
   myACERPal2 <- eneRgymaps::acer.colors.palette (add.greys = TRUE)
-  testthat::expect_equal (eneRgymaps::palette.length (palette = myACERPal2), 6)
+  testthat::expect_equal (eneRgymaps::palette.length (palette = myACERPal2), eneRgymaps::palette.length (palette = myACERPal1) + 2)
   testthat::expect_true (all(eneRgymaps::valid.colors(myACERPal2)))
 })
 
