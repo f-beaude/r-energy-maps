@@ -71,13 +71,21 @@ testthat::test_that("Testing color palette", {
 
 testthat::test_that("Testing ACER colors palette", {
 
-  myACERPal1 <- eneRgymaps::acer.colors.palette (add.greys = FALSE)
-  testthat::expect_equal (eneRgymaps::palette.length (palette = myACERPal1), 8)
+  myACERPal1 <- eneRgymaps::acer.colors.palette (add.greys = FALSE, pale = FALSE)
+  testthat::expect_equal (eneRgymaps::palette.length (palette = myACERPal1), 9)
   testthat::expect_true (all(eneRgymaps::valid.colors(myACERPal1)))
 
-  myACERPal2 <- eneRgymaps::acer.colors.palette (add.greys = TRUE)
+  myACERPal2 <- eneRgymaps::acer.colors.palette (add.greys = TRUE, pale = FALSE)
   testthat::expect_equal (eneRgymaps::palette.length (palette = myACERPal2), eneRgymaps::palette.length (palette = myACERPal1) + 2)
   testthat::expect_true (all(eneRgymaps::valid.colors(myACERPal2)))
+
+  myACERPal3 <- eneRgymaps::acer.colors.palette (add.greys = FALSE, pale = TRUE)
+  testthat::expect_equal (eneRgymaps::palette.length (palette = myACERPal3), eneRgymaps::palette.length (palette = myACERPal1))
+  testthat::expect_true (all(eneRgymaps::valid.colors(myACERPal3)))
+
+  myACERPal4 <- eneRgymaps::acer.colors.palette (add.greys = TRUE, pale = TRUE)
+  testthat::expect_equal (eneRgymaps::palette.length (palette = myACERPal4), eneRgymaps::palette.length (palette = myACERPal2))
+  testthat::expect_true (all(eneRgymaps::valid.colors(myACERPal4)))
 })
 
 

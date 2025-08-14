@@ -104,19 +104,23 @@ green.orange.red.palette <- function (add.grey = FALSE) {
 #' Create a color palette in line with the visual identity of the EU agency ACER
 #' (copyright ACER)
 #'
+#' @param pale whether to rely on pale (or standard) colors
 #' @param add.greys whether the palette should include the two ACER grey colors (e.g. for NAs)
 #' @return the color palette as a vector
 #' @export
-acer.colors.palette <- function (add.greys = FALSE) {
-  pal <- c("#CAF1FC","#FFF5B3","#C0F9CE","#DBCAFC","#FCC0C0","#FFD885","#BAD1FF","#9DE0D0")
-
-  if (add.greys) {
-    grey1 <- grDevices::rgb (red = 230, green = 230, blue = 230, maxColorValue = 255)
-    grey2 <- grDevices::rgb (red = 200, green = 200, blue = 200, maxColorValue = 255)
-    pal <- c(pal, grey1, grey2)
+acer.colors.palette <- function (pale = FALSE, add.greys = FALSE) {
+  palette <- c("#004FEE")
+  if (pale) {
+    palette <- c(palette, "#CAF1FC","#FFF5B3","#C0F9CE","#DBCAFC","#FCC0C0","#FFD885","#BAD1FF","#9DE0D0")
+  } else {
+    palette <- c(palette, "#9BE6FD","#FEEA70","#81F39C","#BC9BFD","#FC8585","#FFB40E","#75A3FF","#3DCCAD")
   }
 
-  return (pal)
+  if (add.greys) {
+    palette <- c(palette, "#C0C0C0", "#E8E8E8")
+  }
+
+  return (palette)
 }
 
 #' Check whether a given color is valid
