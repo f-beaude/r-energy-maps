@@ -109,6 +109,19 @@ testthat::test_that("Border maps - bidding zones", {
                                                  save.plot = FALSE,
                                                  save.data = FALSE); borderMap; TRUE})
 
+  # Map with variable used to color bidding zones borders, with palette of colors and legend values as percentages
+  testthat::expect_true ({borderMap <- eneRgymaps::mapBiddingZone(border.data = borderData,
+                                                                  border.id.field.name = "border",
+                                                                  border.in.id.field.name = "in_area_code", border.out.id.field.name = "out_area_code",
+                                                                  border.label.value.field.name = "Average",
+                                                                  border.color.value.field.name = "Average", border.legend.color.name = "Average flows",
+                                                                  border.legend.color.values.as.percentages = TRUE,
+                                                                  border.color.palette = "Blues",
+                                                                  border.shape.name = "arrow",
+
+                                                                  save.plot = FALSE,
+                                                                  save.data = FALSE); borderMap; TRUE})
+
   # Map with variable used to color bidding zones borders, with palette of colors (and no legend)
   testthat::expect_true ({borderMap <- eneRgymaps::mapBiddingZone(border.data = borderData,
                                                  border.id.field.name = "border",

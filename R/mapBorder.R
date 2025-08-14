@@ -19,6 +19,7 @@
 #' @param legend.shape.name the name of the legend related to the shapes
 #' @param legend.width.name the name of the legend related to the shape width
 #' @param legend.color.name the name of the legend related to the shape color
+#' @param legend.color.values.as.percentages whether to display values in the color legend as percentages
 #' @param legend.color.keys a list of keys used to customize the legend related to colors
 #' @param legend.color.values a list of values to customize the legend related to colors
 #' @param legend.keep.na whether to keep NAs in the legend
@@ -50,7 +51,7 @@ mapBorder <- function (geographicMap,
                        width.value.field.name = NULL, color.value.field.name = NULL, label.value.field.name = NULL,
                        label.font.color = "black", label.rounding.ndigits = NULL, label.with.frame = TRUE,
                        legend.shape.name = NULL, legend.width.name = NULL,
-                       legend.color.name = NULL,
+                       legend.color.name = NULL, legend.color.values.as.percentages = NULL,
                        legend.color.keys = NULL, legend.color.values = NULL,
                        legend.shape.keys = NULL, legend.shape.values = NULL,
                        legend.keep.na = NULL,
@@ -167,7 +168,8 @@ mapBorder <- function (geographicMap,
                              color.gradient.colors = color.gradient.colors, color.gradient.values = color.gradient.values, color.gradient.perc.values = color.gradient.perc.values,
                              colors.list = colors.list,
                              color.min.value = color.min.value, color.max.value = color.max.value,
-                             legend.color.name = legend.color.name, legend.keep.na = legend.keep.na,
+                             legend.color.name = legend.color.name, legend.color.values.as.percentages = legend.color.values.as.percentages,
+                             legend.keep.na = legend.keep.na,
                              legend.color.keys = legend.color.keys, legend.color.values = legend.color.values)
   }
 

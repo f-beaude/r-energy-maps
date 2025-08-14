@@ -518,6 +518,17 @@ testthat::test_that("Fill maps - bidding zone", {
                                                                 save.plot = FALSE,
                                                                 save.data = FALSE); fillMap; TRUE})
 
+  # map with legend values as percentages
+  testthat::expect_true ({fillMap <- eneRgymaps::mapBiddingZone(fill.data = fillData, fill.id.field.name = "area_code",
+                                                                fill.value.field.name = "price",
+                                                                fill.legend.name = "Electricity price",
+                                                                fill.legend.values.as.percentages = TRUE,
+                                                                fill.color.palette = "Blues",
+
+                                                                save.plot = FALSE,
+                                                                save.data = FALSE); fillMap; TRUE})
+
+
   # error : both AT/DE and DE defined
   fillDataATDEError <- fillData %>%
     dplyr::mutate(`area_code` = dplyr::if_else(`area_code` == "10YRO-TEL------P", eneRgymaps::eic.code.DELU(), `area_code`))

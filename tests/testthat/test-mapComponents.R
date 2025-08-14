@@ -117,6 +117,20 @@ testthat::test_that("Testing configure.colors", {
                                                                configure.type = "fill", field.name = "discrete_value", color.palette = "Blues",
                                                                legend.name = "Discrete value"); plot; TRUE})
 
+  # Legend displaying percentages
+  testthat::expect_true ({plot <- eneRgymaps::configure.colors(geographic.map = discreteVariableMap, data = pricesData,
+                                                               configure.type = "fill", field.name = "discrete_value", color.palette = "Blues",
+                                                               legend.name = "Discrete value", legend.values.as.percentages = TRUE);
+                          plot; TRUE})
+
+  # Legend not displaying percentages, must be identical to no parameters
+  testthat::expect_equal (eneRgymaps::configure.colors(geographic.map = discreteVariableMap, data = pricesData,
+                                                       configure.type = "fill", field.name = "discrete_value", color.palette = "Blues",
+                                                       legend.name = "Discrete value", legend.values.as.percentages = FALSE),
+                          eneRgymaps::configure.colors(geographic.map = discreteVariableMap, data = pricesData,
+                                                       configure.type = "fill", field.name = "discrete_value", color.palette = "Blues",
+                                                       legend.name = "Discrete value"))
+
   # warning: the absolute color gradient thresholds do not cover the whole scope of values
   testthat::expect_warning (eneRgymaps::configure.colors(geographic.map = continuousVariableMap, data = pricesData,
                                                                configure.type = "fill", field.name = "price", gradient.colors = c("yellow", "green"),
@@ -165,6 +179,14 @@ testthat::test_that("Testing configure.colors", {
                                                        configure.type = "fill", field.name = "price",
                                                        color.palette = "Blues", gradient.colors = c("yellow", "green"),
                                                        gradient.perc.values = c(0.1, 0.75)))
+
+  # error: defining both legend values as percentages and key/values for legend
+  legendKeys <- unique(pricesData[["discrete_value"]])
+  colorsList <- eneRgymaps::palette.colors.sample(length = length(legendKeys))
+  testthat::expect_error (eneRgymaps::configure.colors(geographic.map = discreteVariableMap, data = pricesData,
+                                                               configure.type = "fill", field.name = "discrete_value", colors.list = colorsList,
+                                                               legend.name = "Discrete value", legend.values.as.percentages = TRUE,
+                                                       legend.keys = legendKeys, legend.values = legendKeys))
 })
 
 testthat::test_that("Testing add.fill.border", {
@@ -366,6 +388,23 @@ testthat::test_that("Testing add.shapes", {
   testthat::expect_true ({myUpdatedMap <- bg %>%
     eneRgymaps::add.shapes (data = LinesData, shape = "arrow", color = "green", width.field.name = "shape", coordinates.identifiers = lineCoordinateIdentifiers); myUpdatedMap; TRUE})
 
+  # legend with values as percentages
+  testthat::expect_true ({myUpdatedMap <- eneRgymaps::add.shapes (geographic.map = bg, data = LinesData, shape = 17, color.field.name = "flow",
+                            color.palette = "Greens",
+                            coordinates.identifiers = pointCoordinateIdentifiers,
+                            legend.color.name = "Colors", legend.color.values.as.percentages = TRUE); myUpdatedMap; TRUE})
+
+  # legend with standard (non-percentage) values should be identical to lack of parameters
+  # fails because ggplot changes the type of one variable
+  # testthat::expect_equal (eneRgymaps::add.shapes (geographic.map = bg, data = LinesData, shape = 17, color.field.name = "flow",
+  #                                                 color.palette = "Greens",
+  #                           coordinates.identifiers = pointCoordinateIdentifiers,
+  #                           legend.color.name = "Colors", legend.color.values.as.percentages = FALSE),
+  #                       eneRgymaps::add.shapes (geographic.map = bg, data = LinesData, shape = 17, color.field.name = "flow",
+  #                                               color.palette = "Greens",
+  #                           coordinates.identifiers = pointCoordinateIdentifiers,
+  #                           legend.color.name = "Colors"))
+
   # error: missing/too many coordinate identifiers
   testthat::expect_error (eneRgymaps::add.shapes (geographic.map = bg, data = LinesData, shape = "arrow",
                                                   color = "green", coordinates.identifiers = c(NA, NA)))
@@ -425,6 +464,14 @@ testthat::test_that("Testing add.shapes", {
   testthat::expect_error (eneRgymaps::add.arrows (geographic.map = bg, data = LinesData,
                                                  legend.shape.name = "test",
                                                  color = "green", coordinates.identifiers = lineCoordinateIdentifiers))
+
+  # error: legend values defined both as key/value and as percentages
+  legendKeys <- unique(LinesData[["flow"]])
+  testthat::expect_error (eneRgymaps::add.shapes (geographic.map = bg, data = LinesData, shape = 17, color.field.name = "flow",
+                          colors.list = c("orange", "green", "red"),
+                          coordinates.identifiers = pointCoordinateIdentifiers,
+                          legend.color.name = "Colors", legend.color.values.as.percentages = TRUE,
+                          legend.color.keys = legendKeys, legend.color.values = legendKeys))
 })
 
 

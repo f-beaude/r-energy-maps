@@ -136,12 +136,13 @@ add.geographic.entity.names <- function (plot, geographic.entity.name, political
 #' @param min.value the value to associate with the minimum color (anything below will be treated as minimum color). Only applies to a palette or a gradient.
 #' @param max.value the value to associate with the maximum color (anything above will be treated as maximum color). Only applies to a palette or a gradient.
 #' @param legend.name the name of the legend related to colors
+#' @param legend.values.as.percentages whether the values displayed in the legend are percentages
 #' @param legend.keys a vector of keys used to customize the legend related to colors
 #' @param legend.values a vector of values to customize the legend related to colors
 #' @param legend.keep.na whether to keep NAs in the legend
 #' @return the updated map
 #' @importFrom ggplot2 guide_colorbar guide_legend scale_color_distiller scale_color_gradientn scale_color_manual scale_fill_distiller scale_fill_gradientn scale_fill_manual
-#' @importFrom scales squish
+#' @importFrom scales label_percent squish
 #' @importFrom stats na.omit
 #' @examples
 #' configure.colors (geographic.map = myMap, data = BZPriceChanges, configure.type = "fill", field.name = "price", color.palette = "Blues")
@@ -151,7 +152,8 @@ configure.colors <- function (geographic.map, data = NULL, configure.type,
                         color.palette = NULL, na.color = "lightgrey",
                         gradient.colors = NULL, gradient.values = NULL, gradient.perc.values = NULL,
                         colors.list = NULL, min.value = NULL, max.value = NULL,
-                        legend.name = NULL, legend.keys = NULL, legend.values = NULL,
+                        legend.name = NULL, legend.values.as.percentages = NULL,
+                        legend.keys = NULL, legend.values = NULL,
                         legend.keep.na = NULL) {
 
   # empty data set => nothing to do
@@ -210,6 +212,8 @@ configure.colors <- function (geographic.map, data = NULL, configure.type,
     warning("Keeping NAs in the legend does not apply apply for fill")
   }
 
+  # Can only describe legend values as percentage when the legend values are not customised
+  stopifnot ((is.null (legend.values.as.percentages)) || (is.null (legend.keys)))
 
   # when a colors.list is provided, check that
   # - the value.field.name is set
@@ -259,6 +263,9 @@ configure.colors <- function (geographic.map, data = NULL, configure.type,
   genericParameters <- c (list(name = legend.name, na.value = na.color))
   if (configure.type == "color") {
     genericParameters <- c(genericParameters, list(na.translate = legend.keep.na))
+  }
+  if ((! is.null(legend.values.as.percentages)) && (legend.values.as.percentages)) {
+    genericParameters <- c(genericParameters, list(labels = scales::label_percent()))
   }
   genericParameters <- genericParameters[! sapply(genericParameters, is.null)]
 
@@ -337,6 +344,7 @@ configure.colors <- function (geographic.map, data = NULL, configure.type,
 #' @param color.min.value the value to associate with the minimum color (anything below will be treated as minimum color). Only applies to a palette or a gradient.
 #' @param color.max.value the value to associate with the maximum color (anything above will be treated as maximum color). Only applies to a palette or a gradient.
 #' @param legend.color.name the name of the legend related to the shape color
+#' @param legend.color.values.as.percentages whether the values displayed in the legend are percentages
 #' @param legend.color.keys a list of keys used to customize the legend related to colors
 #' @param legend.color.values a list of values to customize the legend related to colors
 #' @param legend.keep.na whether the shape and/or color legend should keep NAs
@@ -361,7 +369,7 @@ add.shapes <- function (geographic.map, data = NULL,
                         color.palette = NULL, na.color = "lightgrey",
                         color.gradient.colors = NULL, color.gradient.values = NULL, color.gradient.perc.values = NULL,
                         colors.list = NULL, color.min.value = NULL, color.max.value = NULL,
-                        legend.color.name = NULL,
+                        legend.color.name = NULL, legend.color.values.as.percentages = NULL,
                         legend.color.keys = NULL, legend.color.values = NULL,
                         legend.keep.na = NULL) {
 
@@ -389,6 +397,9 @@ add.shapes <- function (geographic.map, data = NULL,
   stopifnot (! ((is.null(width.field.name)) && (! is.null(legend.width.name))))
   stopifnot (! ((is.null(color.field.name)) && (! is.null(legend.color.name))))
   stopifnot (! ((is.null(shape.field.name)) && (! is.null(legend.shape.name))))
+
+  # Can only describe color legend values as percentage when the color legend values are not customised
+  stopifnot ((is.null (legend.color.values.as.percentages)) || (is.null (legend.color.keys)))
 
   # 6 coordinates are needed : long/lat for center, in and out
   stopifnot (length (coordinates.identifiers) == 6)
@@ -577,7 +588,8 @@ add.shapes <- function (geographic.map, data = NULL,
                                    gradient.colors = color.gradient.colors, gradient.values = color.gradient.values,
                                    gradient.perc.values = color.gradient.perc.values, colors.list = colors.list,
                                    min.value = color.min.value, max.value = color.max.value,
-                                   legend.name = legend.color.name, legend.keep.na = legend.keep.na,
+                                   legend.name = legend.color.name, legend.values.as.percentages = legend.color.values.as.percentages,
+                                   legend.keep.na = legend.keep.na,
                                    legend.keys = legend.color.keys, legend.values = legend.color.values)
   }
 

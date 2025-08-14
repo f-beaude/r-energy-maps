@@ -19,6 +19,7 @@
 #' @param fill.label.rounding.ndigits the number of digits to use when rounding label numbers (NULL -> display numbers as provided)
 #' @param fill.label.with.frame whether to draw a frame around the fill label
 #' @param fill.legend.name the name to display along the legend for the fill part (NULL -> no legend, "" -> legend with no name)
+#' @param fill.legend.values.as.percentages whether to display percentage values in the legend for the fill part
 #' @param fill.legend.keys a list of keys to be used to customize the legend for the fill part
 #' @param fill.legend.values a list of values to customize the legend for the fill part
 #' @param fill.color.palette the palette to use to display the fill colors
@@ -41,6 +42,7 @@
 #' @param fill.legend.center.shape.values a list of values to be used to customize the legend related to center shapes
 #' @param fill.legend.center.shape.width.name the name to display along the legend for the center shape width part (NULL -> hidden, "" -> displayed without title)
 #' @param fill.legend.center.shape.color.name the name to display along the legend for the center shape color part (NULL -> hidden, "" -> displayed without title)
+#' @param fill.legend.center.shape.color.values.as.percentages whether to display percentage values in the legend for the center shape color part
 #' @param fill.legend.center.shape.keep.na whether the legend for fill shape should keep NAs
 #' @param fill.legend.center.shape.color.keys a list of keys to be used to customize the legend related to center shapes colors
 #' @param fill.legend.center.shape.color.values a list of values to be used to customize the legend related to center shapes colors
@@ -71,6 +73,7 @@
 #' @param border.legend.shape.name the name to display along the legend for the border shape part (NULL -> no legend, "" -> legend with no name)
 #' @param border.legend.width.name the name to display along the legend for the border width part (NULL -> no legend, "" -> legend with no name)
 #' @param border.legend.color.name the name to display along the legend for the border color part (NULL -> no legend, "" -> legend with no name)
+#' @param border.legend.color.values.as.percentages whether to display percentage values in the legend for the border color part
 #' @param border.legend.color.keys a list of keys to be used to customize the legend related to border colors
 #' @param border.legend.color.values a list of values to customize the legend related to border colors
 #' @param border.legend.shape.keys a list of keys to be used to customize the legend related to border shapes
@@ -127,7 +130,8 @@ mapGeographic <- function (geographic.entity.name, date = base::Sys.Date(),
                            fill.data = NULL, fill.id.field.name = NULL, fill.value.field.name = NULL,
                            fill.label.first.field.name = NULL, fill.label.second.field.name = NULL,
                            fill.label.font.color = "black", fill.label.font.size = NULL, fill.label.rounding.ndigits = NULL, fill.label.with.frame = FALSE,
-                           fill.legend.name = NULL, fill.legend.keys = NULL, fill.legend.values = NULL,
+                           fill.legend.name = NULL, fill.legend.values.as.percentages = NULL,
+                           fill.legend.keys = NULL, fill.legend.values = NULL,
                            fill.color.palette = NULL, fill.na.color = "lightgrey",
                            fill.color.gradient.colors = NULL, fill.color.gradient.values = NULL, fill.color.gradient.perc.values = NULL,
                            fill.colors.list = NULL,
@@ -137,7 +141,8 @@ mapGeographic <- function (geographic.entity.name, date = base::Sys.Date(),
                            fill.center.shape.name = NULL, fill.center.shape.color = NULL, fill.center.shape.width = NULL, fill.center.shape.solid = TRUE,
                            fill.legend.center.shape.name = NULL, fill.legend.center.shape.keys = NULL, fill.legend.center.shape.values = NULL,
                            fill.legend.center.shape.width.name = NULL,
-                           fill.legend.center.shape.color.name = NULL, fill.legend.center.shape.keep.na = NULL,
+                           fill.legend.center.shape.color.name = NULL, fill.legend.center.shape.color.values.as.percentages = NULL,
+                           fill.legend.center.shape.keep.na = NULL,
                            fill.legend.center.shape.color.keys = NULL, fill.legend.center.shape.color.values = NULL,
                            fill.center.shape.color.palette = NULL,
                            fill.center.shape.color.gradient.colors = NULL, fill.center.shape.color.gradient.values = NULL, fill.center.shape.color.gradient.perc.values = NULL,
@@ -152,6 +157,7 @@ mapGeographic <- function (geographic.entity.name, date = base::Sys.Date(),
                            border.label.font.color = "black", border.label.rounding.ndigits = NULL, border.label.with.frame = TRUE,
                            border.legend.shape.name = NULL, border.legend.width.name = NULL,
                            border.legend.color.name = NULL, # no legend for label, because it is not satisfactorily displayed
+                           border.legend.color.values.as.percentages = NULL,
                            border.legend.color.keys = NULL, border.legend.color.values = NULL,
                            border.legend.shape.keys = NULL, border.legend.shape.values = NULL,
                            border.legend.keep.na = NULL,
@@ -236,7 +242,8 @@ mapGeographic <- function (geographic.entity.name, date = base::Sys.Date(),
                          id.field.name = fill.id.field.name, value.field.name = fill.value.field.name,
                          label.first.field.name = fill.label.first.field.name, label.second.field.name = fill.label.second.field.name,
                          label.font.color = fill.label.font.color, label.font.size = fill.label.font.size, label.rounding.ndigits = fill.label.rounding.ndigits, label.with.frame = fill.label.with.frame,
-                         legend.name = fill.legend.name, legend.keys = fill.legend.keys, legend.values = fill.legend.values,
+                         legend.name = fill.legend.name, legend.values.as.percentages = fill.legend.values.as.percentages,
+                         legend.keys = fill.legend.keys, legend.values = fill.legend.values,
                          color.palette = fill.color.palette, na.color = fill.na.color,
                          color.gradient.colors = fill.color.gradient.colors, color.gradient.values = fill.color.gradient.values, color.gradient.perc.values = fill.color.gradient.perc.values,
                          colors.list = fill.colors.list,
@@ -248,7 +255,8 @@ mapGeographic <- function (geographic.entity.name, date = base::Sys.Date(),
                          center.shape.width = fill.center.shape.width, center.shape.solid = fill.center.shape.solid,
                          legend.center.shape.name = fill.legend.center.shape.name, legend.center.shape.keys = fill.legend.center.shape.keys, legend.center.shape.values = fill.legend.center.shape.values,
                          legend.center.shape.width.name = fill.legend.center.shape.width.name,
-                         legend.center.shape.color.name = fill.legend.center.shape.color.name, legend.center.shape.keep.na = fill.legend.center.shape.keep.na,
+                         legend.center.shape.color.name = fill.legend.center.shape.color.name, legend.center.shape.color.values.as.percentages = fill.legend.center.shape.color.values.as.percentages,
+                         legend.center.shape.keep.na = fill.legend.center.shape.keep.na,
                          legend.center.shape.color.keys = fill.legend.center.shape.color.keys, legend.center.shape.color.values = fill.legend.center.shape.color.values,
                          center.shape.color.palette = fill.center.shape.color.palette,
                          center.shape.color.gradient.colors = fill.center.shape.color.gradient.colors, center.shape.color.gradient.values = fill.center.shape.color.gradient.values, center.shape.color.gradient.perc.values = fill.center.shape.color.gradient.perc.values,
@@ -264,7 +272,7 @@ mapGeographic <- function (geographic.entity.name, date = base::Sys.Date(),
                                  color.value.field.name = border.color.value.field.name, label.value.field.name = border.label.value.field.name,
                                  label.font.color = border.label.font.color, label.rounding.ndigits = border.label.rounding.ndigits, label.with.frame = border.label.with.frame,
                                  legend.shape.name = border.legend.shape.name, legend.width.name = border.legend.width.name,
-                                 legend.color.name = border.legend.color.name,
+                                 legend.color.name = border.legend.color.name, legend.color.values.as.percentages = border.legend.color.values.as.percentages,
                                  legend.color.keys = border.legend.color.keys, legend.color.values = border.legend.color.values,
                                  legend.shape.keys = border.legend.shape.keys, legend.shape.values = border.legend.shape.values,
                                  legend.keep.na = border.legend.keep.na,
