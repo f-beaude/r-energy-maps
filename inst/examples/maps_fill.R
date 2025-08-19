@@ -127,9 +127,10 @@ countryFillMap <- eneRgymaps::mapCountry(fill.data = CountriesAssessment, fill.i
 countryFillMap
 
 
-## map with countries filled (and UK), and borders filled in blue (dashed and wider)
+## map with countries filled (and UK), legend values displayed as percentages, and borders filled in blue (dashed and wider)
 countryFillUKMap <- eneRgymaps::mapCountry(fill.data = CountriesAssessmentUK, fill.id.field.name = "Country", fill.value.field.name = "Value.3",
-                                           fill.legend.name = "Values", fill.colors.list = redOrangeGreen,
+                                           fill.legend.name = "Values", fill.color.palette = "Greens",
+                                           fill.legend.values.as.percentages = TRUE,
                                            fill.borders.color = "Blue", fill.borders.width = 1.1, fill.borders.linetype = "dashed",
                                            save.plot = FALSE, save.data = FALSE)
 countryFillUKMap
