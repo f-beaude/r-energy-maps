@@ -350,7 +350,7 @@ configure.colors <- function (geographic.map, data = NULL, configure.type,
 #' @param legend.keep.na whether the shape and/or color legend should keep NAs
 #' @return the updated map
 #' @importFrom dplyr select
-#' @importFrom ggplot2 aes_string arrow geom_point geom_segment guide_legend scale_shape_discrete scale_size_continuous unit
+#' @importFrom ggplot2 aes arrow geom_point geom_segment guide_legend scale_shape_discrete scale_size_continuous unit sym
 #' @importFrom scales squish
 #' @importFrom stats na.omit
 #' @examples
@@ -521,9 +521,10 @@ add.shapes <- function (geographic.map, data = NULL,
                                                xend=coordinates.identifiers[[5]], yend=coordinates.identifiers[[6]]))
   }
   shapeAesParams <- shapeAesParams[! sapply(shapeAesParams, is.null)]
+  # rely on symbolic names (as strings)
+  shapeAesParams <- lapply(shapeAesParams, ggplot2::sym)
 
-  # rely on do.call, to propagate named arguments
-  shapeAes <- do.call (what = ggplot2::aes_string, args = shapeAesParams)
+  shapeAes <- ggplot2::aes(!!! shapeAesParams)
 
   # generate the (fixed) shape parameters
   shapeParameters <- c (list (col = segmentColor, size = fixedSize)) # add everything, then remove NULL elements
@@ -627,7 +628,7 @@ add.arrows <- function (...) {
 #' @param font.size the font size to use
 #' @return the updated map
 #' @importFrom dplyr all_of select
-#' @importFrom ggplot2 aes_string geom_label geom_text
+#' @importFrom ggplot2 aes geom_label geom_text sym
 #' @importFrom stringi stri_rand_strings
 #' @examples
 #' eneRgymaps::add.labels (geographic.map = myMap, data = BZPriceChangesWithCoordinates, coordinates.identifiers = c ("longitude", "latitude"), field.names = c ("price"), with.frame = FALSE)
@@ -708,9 +709,11 @@ add.labels <- function (geographic.map, data = NULL,
     labelFunction <- ggplot2::geom_text
   }
 
+  aesArgs <- c (list (x = coordinates.identifiers[[1]], y = coordinates.identifiers[[2]],
+                      label = labelFieldName))
+  aesArgs <- lapply(aesArgs, ggplot2::sym)
   return (geographic.map +
-    labelFunction (data = plotData, mapping = ggplot2::aes_string(x = coordinates.identifiers[[1]], y = coordinates.identifiers[[2]],
-                                                                  label = labelFieldName),
+    labelFunction (data = plotData, mapping = ggplot2::aes(!!! aesArgs),
                    size = font.size, color = font.color, show.legend = FALSE))
 }
 
@@ -726,7 +729,7 @@ add.labels <- function (geographic.map, data = NULL,
 #' @param border.width (fixed) border width
 #' @param border.linetype (fixed) border linetype
 #' @return the updated map
-#' @importFrom ggplot2 aes_string geom_sf
+#' @importFrom ggplot2 aes geom_sf sym
 #' @examples
 #' add.fill.and.border (geographic.map = ggplot2::ggplot(), data = World, fill.color = "red")
 #' add.fill.and.border (geographic.map = ggplot2::ggplot(), data = myData, fill.color.field = "price", border.color = "white", border.width = 0.5, border.linetype = 1)
@@ -780,7 +783,9 @@ add.fill.and.border <- function (geographic.map, data = NULL,
   # define mapping
   aesParams <- c (list (fill = fill.color.field, geometry = "geometry")) # add everything then remove NULL elements
   aesParams <- aesParams[! sapply(aesParams, is.null)]
-  aes <- do.call (what = ggplot2::aes_string, args = aesParams)
+  aesParams <- lapply(aesParams, ggplot2::sym)
+
+  aes <- ggplot2::aes(!!! aesParams)
 
   borderColorParam <- NA
   borderSizeParam <- NULL
